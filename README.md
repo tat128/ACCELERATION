@@ -1,4 +1,4 @@
-Neurax 3.0 Hackathon- AI in Industry and Automation
+Neurax 3.0 Hackathon- AI in Industry and Automation \n
 Visual Inspection & Defect Root-Cause Assistant
 
 _*Problem understanding:*_
