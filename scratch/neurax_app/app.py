@@ -1234,7 +1234,9 @@ with tab4:
                     'impact':   "Direct scrap reduction and buffer stabilization",
                 })
 
-            if fin_analysis.get('throughput_gap', 0) > 10:
+            if fin_analysis and isinstance(fin_analysis, dict):
+    if fin_analysis.get('throughput_gap', 0) > 10:
+        
                 recs.insert(0, {
                     'priority': 'HIGH',
                     'title':    f"Elevate {fin_analysis['bottleneck_station']} station capacity",
