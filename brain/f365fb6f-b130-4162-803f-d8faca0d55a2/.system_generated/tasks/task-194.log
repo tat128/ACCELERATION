@@ -1,0 +1,10 @@
+Layer 0: Conv
+Layer 1: Conv
+Layer 2: C2f
+Layer 3: Conv
+Layer 4: C2f
+Layer 5: Conv
+Layer 6: C2f
+Layer 7: Conv
+Layer 8: C2f
+Layer 9: Classify

@@ -1,0 +1,11 @@
+
+The command exited with code 1.
+Output:
+At line:1 char:61
++ ... d "C:\Users\win-10\.gemini\antigravity\scratch\neurax_app" && python  ...
++                                                                ~~
+The token '&&' is not a valid statement separator in this version.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : InvalidEndOfLine
+ 
+

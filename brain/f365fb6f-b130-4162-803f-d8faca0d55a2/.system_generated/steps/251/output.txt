@@ -1,0 +1,46 @@
+The following changes were made by the replace_file_content tool to: C:\Users\win-10\.gemini\antigravity\scratch\neurax_app\app.py. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -285,8 +285,8 @@
+             )
+         with filter_col2:
+             vis_mode = st.radio(
+-                "Overlay Mode",
+-                ["🎯 AI Bounding Box", "🔥 Grad-CAM Heatmap", "📷 Raw Image"],
++                "Display Mode",
++                ["🖼️ Clean Industrial View", "🔥 Grad-CAM Heatmap", "🎯 Bounding Box", "📷 Raw Image"],
+                 horizontal=True,
+                 key="vis_mode_sel",
+             )
+@@ -327,6 +327,8 @@
+                         # Display chosen overlay image
+                         if vis_mode == "🔥 Grad-CAM Heatmap" and res.get('heatmap_image'):
+                             st.image(res['heatmap_image'], use_container_width=True)
++                        elif vis_mode == "🎯 Bounding Box" and res.get('boxed_image'):
++                            st.image(res['boxed_image'], use_container_width=True)
+                         elif vis_mode == "📷 Raw Image" and res.get('raw_image'):
+                             st.image(res['raw_image'], use_container_width=True)
+                         elif res.get('annotated_image'):
+@@ -333,10 +333,10 @@
+ 
+                         st.markdown(f"**Defect:** `{dtype}` &nbsp;|&nbsp; **Conf:** `{conf:.1f}%`")
+-                        if bbox:
++                        if bbox and vis_mode == "🎯 Bounding Box":
+                             x1, y1, x2, y2 = [int(v) for v in bbox]
+                             st.caption(f"📍 Box: `[{x1}, {y1}, {x2}, {y2}]` ({x2-x1}×{y2-y1}px)")
+                         else:
+-                            st.caption("✅ Surface clean / within tolerance")
++                            st.caption(f"Status: **{stat}** · AI Classification")
+ 
+                         # Class probability breakdown
+                         if res.get('class_probs'):
+@@ -343,5 +343,7 @@
+                                 for c_name, c_prob in sorted(res['class_probs'].items(), key=lambda x: x[1], reverse=True):
+                                     st.progress(min(1.0, float(c_prob)), text=f"{c_name.capitalize()}: {c_prob*100:.1f}%")
++                                for c_name, c_prob in sorted(res['class_probs'].items(), key=lambda x: x[1], reverse=True):
++                                    st.progress(min(1.0, float(c_prob)), text=f"{c_name.capitalize()}: {c_prob*100:.1f}%")
+ 
+         st.divider()
+ 
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.

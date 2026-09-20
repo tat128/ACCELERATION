@@ -1,0 +1,64 @@
+The following changes were made by the replace_file_content tool to: C:\Users\win-10\.gemini\antigravity\scratch\neurax_app\utils\constants.py. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -1,5 +1,5 @@
+ # ─────────────────────────────────────────────────────────────────────────────
+-# NEURAX 3.0  –  Constants & Configuration
++# Constants & Configuration
+ # ─────────────────────────────────────────────────────────────────────────────
+ 
+ # ── YOLOv8 Model ─────────────────────────────────────────────────────────────
+@@ -36,6 +36,12 @@
+     'Drilling': '#e74c3c',
+     'Milling':  '#f39c12',
+     'Assembly': '#3498db',
++    'Blanking': '#1abc9c',
++    'Press':    '#e67e22',
++    'Cell':     '#9b59b6',
++    'Paint':    '#34495e',
++    'Quality':  '#2ecc71',
++    'Forklift': '#f1c40f',
+ }
+ 
+ # ── Production Thresholds ─────────────────────────────────────────────────────
+@@ -42,24 +42,24 @@
+ 
+-# ── Column Aliases (flexible CSV parsing) ─────────────────────────────────────
++# ── Column Aliases (flexible CSV/XLSX parsing) ─────────────────────────────────
+ STATION_COLS = {
+     'Drilling': {
+-        'util': ['Drilling Util', 'Drill Util', 'Drilling_Util'],
+-        'wait': ['Drilling Waiting Time', 'Drill Waiting Time', 'Drilling_Waiting_Time'],
++        'util': ['Drilling Util', 'Drilling Utilization', 'Drill Util', 'Drilling_Util'],
++        'wait': ['Drilling Waiting Time', 'Drilling Queue Time', 'Drill Waiting Time', 'Drilling_Waiting_Time'],
+     },
+     'Milling': {
+-        'util': ['Milling Util', 'Mill Util', 'Milling_Util'],
+-        'wait': ['Milling Waiting Time', 'Mill Waiting Time', 'Milling_Waiting_Time'],
++        'util': ['Milling Util', 'Milling Utilization', 'Mill Util', 'Milling_Util'],
++        'wait': ['Milling Waiting Time', 'Milling Queue Time', 'Mill Waiting Time', 'Milling_Waiting_Time'],
+     },
+     'Assembly': {
+-        'util': ['Assembly Util', 'Asm Util', 'Assembly_Util'],
+-        'wait': ['Assembly Waiting Time', 'Asm Waiting Time', 'Assembly_Waiting_Time'],
+-    },
+-}
+-
+-DEMAND_COLS   = ['Demand', 'demand', 'Total Demand']
+-PARTS_COLS    = ['Total parts', 'Total Parts', 'total_parts', 'Parts Produced']
+-PPH_COLS      = ['Parts per hour', 'Parts Per Hour', 'parts_per_hour', 'PPH']
+-VA_TIME_COLS  = ['VA Time', 'Value Added Time', 'va_time']
++        'util': ['Assembly Util', 'Assembly Utilization', 'Asm Util', 'Assembly_Util'],
++        'wait': ['Assembly Waiting Time', 'Assembly Queue Time', 'Assembly Time', 'Asm Waiting Time', 'Assembly_Waiting_Time'],
++    },
++}
++
++DEMAND_COLS   = ['Demand', 'demand', 'Total Demand', 'c_TotalProducts']
++PARTS_COLS    = ['Total parts', 'Total Parts', 'total_parts', 'Parts Produced', 'Entities Out', 'c_TotalProducts', 'c_Total_Products']
++PPH_COLS      = ['Parts per hour', 'Parts Per Hour', 'parts_per_hour', 'PPH', 'Parts/Hour']
++VA_TIME_COLS  = ['VA Time', 'Value Added Time', 'va_time', 'Part 1 VA Time']
+ 
+ # ── Root-Cause Correlation Rules ──────────────────────────────────────────────
+ # Each rule: condition lambda on flat_row dict, related defect types, explanation
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.

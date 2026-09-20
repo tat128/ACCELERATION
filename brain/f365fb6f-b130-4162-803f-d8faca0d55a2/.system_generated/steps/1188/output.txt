@@ -1,0 +1,6 @@
+
+The command exited with code 0.
+Output:
+Sig: (arg1, arg2=None, model_name: str = 'Active Model') -> plotly.graph_objs._figure.Figure
+OK traces: 1
+

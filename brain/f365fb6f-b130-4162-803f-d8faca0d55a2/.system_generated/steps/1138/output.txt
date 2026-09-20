@@ -1,0 +1,39 @@
+The following changes were made by the replace_file_content tool to: C:\Users\win-10\.gemini\antigravity\scratch\neurax_app\utils\chart_helpers.py. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -279,10 +279,30 @@
+     return fig
+ 
+ 
+-def margin_comparison_bar(baseline_margin: float, whatif_margin: float, model_name: str = "Active Model") -> go.Figure:
+-    """Renders a high-contrast side-by-side comparison between Baseline and What-If."""
++def margin_comparison_bar(arg1, arg2=None, model_name: str = "Active Model") -> go.Figure:
++    """
++    Renders a high-contrast side-by-side comparison between Baseline and What-If.
++    Supports both:
++      margin_comparison_bar(baseline_margin, whatif_margin, model_name)
++      margin_comparison_bar({'Model 1': {'baseline': ..., 'whatif': ...}})
++    """
++    if isinstance(arg1, dict):
++        if not arg1:
++            return go.Figure()
++        first_key = list(arg1.keys())[0]
++        if isinstance(arg1[first_key], dict) and 'baseline' in arg1[first_key]:
++            baseline_val = float(arg1[first_key]['baseline'].get('net_margin', 0))
++            whatif_val = float(arg1[first_key]['whatif'].get('net_margin', 0))
++            model_name = str(first_key)
++        else:
++            baseline_val = float(arg1.get('baseline', 0))
++            whatif_val = float(arg1.get('whatif', 0))
++    else:
++        baseline_val = float(arg1)
++        whatif_val = float(arg2) if arg2 is not None else float(arg1)
++
+     scenarios = ['Baseline Scenario', 'What-If Optimized']
+-    margins = [baseline_margin, whatif_margin]
++    margins = [baseline_val, whatif_val]
+     colors = ['#6366f1', '#10b981']
+ 
+     fig = go.Figure([
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.

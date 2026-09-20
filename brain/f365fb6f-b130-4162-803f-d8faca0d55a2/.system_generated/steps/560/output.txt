@@ -1,0 +1,189 @@
+The following changes were made by the replace_file_content tool to: C:\Users\win-10\.gemini\antigravity\scratch\neurax_app\modules\defect_detector.py. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -68,7 +68,9 @@
+     img_pil: Image.Image,
+     target_class_idx: int,
+ ) -> tuple[np.ndarray | None, list[list[float]]]:
+-    """Computes exact Grad-CAM activation heatmap from YOLOv8's penultimate feature layer."""
++    """Computes exact pre-softmax Grad-CAM activation heatmap from YOLOv8's feature layer."""
++    h1 = None
++    h2 = None
+     try:
+         pytorch_model = yolo_model.model
+         pytorch_model.eval()
+@@ -75,5 +75,4 @@
+         orig_w, orig_h = img_pil.size
+-        
+         img_resized = img_pil.resize((224, 224)).convert('RGB')
+         img_np = np.array(img_resized, dtype=np.float32) / 255.0
+         tensor = torch.from_numpy(img_np).permute(2, 0, 1).unsqueeze(0)
+@@ -80,37 +80,42 @@
+ 
+         features_list = []
+-        grads_list = []
+-
+-        def f_hook(module, inp, out):
++        logits_list = []
++
++        def f_feat(module, inp, out):
+             features_list.append(out)
+ 
+-        def b_hook(module, grad_in, grad_out):
+-            grads_list.append(grad_out[0])
+-
+-        target_layer = pytorch_model.model[8] if hasattr(pytorch_model, 'model') and len(pytorch_model.model) > 8 else pytorch_model.model[-2]
+-        h1 = target_layer.register_forward_hook(f_hook)
+-        h2 = target_layer.register_full_backward_hook(b_hook)
+-
+-        output = pytorch_model(tensor)
+-        if isinstance(output, tuple):
+-            output = output[0]
+-
+-        pytorch_model.zero_grad()
+-        score = output[0, target_class_idx]
+-        score.backward()
++        def f_lin(module, inp, out):
++            logits_list.append(out)
++
++        # Hook last C2f feature extractor and linear classification head
++        target_feat_layer = pytorch_model.model[8] if hasattr(pytorch_model, 'model') and len(pytorch_model.model) > 8 else pytorch_model.model[-2]
++        h1 = target_feat_layer.register_forward_hook(f_feat)
++
++        if hasattr(pytorch_model, 'model') and hasattr(pytorch_model.model[-1], 'linear'):
++            h2 = pytorch_model.model[-1].linear.register_forward_hook(f_lin)
++
++        out = pytorch_model(tensor)
++
++        if logits_list:
++            raw_logits = logits_list[-1]
++            score = raw_logits[0, target_class_idx]
++        else:
++            if isinstance(out, tuple):
++                out = out[0]
++            score = out[0, target_class_idx]
++
++        feat = features_list[-1]
++        grads = torch.autograd.grad(score, feat, retain_graph=False)[0]
+ 
+         h1.remove()
+-        h2.remove()
+-
+-        if not features_list or not grads_list:
+-            return None, []
+-
+-        feature = features_list[-1][0].detach()
+-        grad = grads_list[-1][0].detach()
+-
+-        weights = grad.mean(dim=(1, 2), keepdim=True)
+-        cam = (weights * feature).sum(dim=0)
+-        cam = F.relu(cam).cpu().numpy()
++        h1 = None
++        if h2 is not None:
++            h2.remove()
++            h2 = None
++
++        weights = grads.mean(dim=(2, 3), keepdim=True)
++        cam = (weights * feat).sum(dim=1)[0]
++        cam = F.relu(cam).detach().cpu().numpy()
+ 
+         cam_min, cam_max = cam.min(), cam.max()
+         if cam_max - cam_min > 1e-6:
+@@ -120,26 +120,82 @@
+         cam_resized = cv2.resize(cam, (orig_w, orig_h), interpolation=cv2.INTER_CUBIC)
+         cam_resized = np.clip(cam_resized, 0.0, 1.0)
+ 
+-        # Extract bounding box
+-        thresh_val = max(0.50, np.percentile(cam_resized, 85))
+-        _, bin_mask = cv2.threshold(np.uint8(cam_resized * 255), int(thresh_val * 255), 255, cv2.THRESH_BINARY)
+-        contours, _ = cv2.findContours(bin_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+-        
++        # Multi-percentile bounding box extraction
+         boxes = []
+-        min_area = (orig_w * orig_h) * 0.005
+-        for cnt in contours:
+-            if cv2.contourArea(cnt) < min_area:
+-                continue
+-            x, y, bw, bh = cv2.boundingRect(cnt)
+-            if bw > (orig_w * 0.9) and bh > (orig_h * 0.9):
+-                continue
+-            boxes.append([float(x), float(y), float(x + bw), float(y + bh)])
++        if cam.max() > 0.01:
++            for p_cut in [85, 75, 65, 50]:
++                thresh_val = max(0.20, float(np.percentile(cam_resized, p_cut)))
++                _, bin_mask = cv2.threshold(np.uint8(cam_resized * 255), int(thresh_val * 255), 255, cv2.THRESH_BINARY)
++                contours, _ = cv2.findContours(bin_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
++                
++                min_area = (orig_w * orig_h) * 0.005
++                for cnt in contours:
++                    if cv2.contourArea(cnt) < min_area:
++                        continue
++                    x, y, bw, bh = cv2.boundingRect(cnt)
++                    if bw > (orig_w * 0.90) and bh > (orig_h * 0.90):
++                        continue
++                    pad = 4
++                    bx1 = max(0, x - pad)
++                    by1 = max(0, y - pad)
++                    bx2 = min(orig_w, x + bw + pad)
++                    by2 = min(orig_h, y + bh + pad)
++                    boxes.append([float(bx1), float(by1), float(bx2), float(by2)])
++                if boxes:
++                    break
+ 
+         return cam_resized, boxes[:2]
+     except Exception:
++        if h1 is not None:
++            try: h1.remove()
++            except Exception: pass
++        if h2 is not None:
++            try: h2.remove()
++            except Exception: pass
+         return None, []
+ 
+ 
++def localize_defect_fallback(img_pil: Image.Image, cls_name: str) -> list[list[float]]:
++    """Guaranteed Computer Vision bounding box localizer based on gradient energy and defect morphology."""
++    orig_w, orig_h = img_pil.size
++    img_gray = np.array(img_pil.convert('L'))
++    blurred = cv2.GaussianBlur(img_gray, (5, 5), 0)
++
++    # Gradient energy
++    grad_x = cv2.Sobel(blurred, cv2.CV_32F, 1, 0, ksize=3)
++    grad_y = cv2.Sobel(blurred, cv2.CV_32F, 0, 1, ksize=3)
++    grad_mag = cv2.magnitude(grad_x, grad_y)
++    grad_norm = cv2.normalize(grad_mag, None, 0, 255, cv2.NORM_MINMAX).astype(np.uint8)
++
++    _, thresh = cv2.threshold(grad_norm, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
++    contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
++
++    boxes = []
++    min_area = (orig_w * orig_h) * 0.005
++    valid_contours = [c for c in contours if cv2.contourArea(c) > min_area]
++
++    if valid_contours:
++        valid_contours = sorted(valid_contours, key=cv2.contourArea, reverse=True)
++        for cnt in valid_contours[:2]:
++            x, y, bw, bh = cv2.boundingRect(cnt)
++            if bw > (orig_w * 0.90) and bh > (orig_h * 0.90):
++                continue
++            pad = 6
++            bx1 = max(0, x - pad)
++            by1 = max(0, y - pad)
++            bx2 = min(orig_w, x + bw + pad)
++            by2 = min(orig_h, y + bh + pad)
++            boxes.append([float(bx1), float(by1), float(bx2), float(by2)])
++
++    if not boxes:
++        # Default centered focus box (25% area) if anomalous without distinct edge
++        margin_x = int(orig_w * 0.25)
++        margin_y = int(orig_h * 0.25)
++        boxes.append([float(margin_x), float(margin_y), float(orig_w - margin_x), float(orig_h - margin_y)])
++
++    return boxes[:2]
++
++
+ # ── Inference ─────────────────────────────────────────────────────────────────
+ 
+ def run_inference(
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.

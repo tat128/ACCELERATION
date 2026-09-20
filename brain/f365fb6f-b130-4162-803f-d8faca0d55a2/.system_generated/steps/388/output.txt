@@ -1,0 +1,8 @@
+
+The command exited with code 0.
+Output:
+rust shape: (256, 256, 3) mean BGR: [54.7449646 54.7449646 54.7449646]
+scratch shape: (256, 256, 3) mean BGR: [163.52639771 163.52639771 163.52639771]
+crack shape: (256, 256, 3) mean BGR: [95.29327393 95.29327393 95.29327393]
+hole shape: (256, 256, 3) mean BGR: [65.37480164 65.37480164 65.37480164]
+

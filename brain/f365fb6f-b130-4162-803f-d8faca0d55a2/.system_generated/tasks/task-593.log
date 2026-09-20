@@ -1,0 +1,9 @@
+Model 1: err= None bottleneck= Assembly 0.7759 parts= 5025.6
+Model 2: err= None bottleneck= Assembly 0.6835 parts= 6554.4
+Model 3: err= None bottleneck= Cell1 0.8669 parts= 54756.3
+
+Comparison table:
+      Model   Demand  Parts Produced Bottleneck Station  Bottleneck Util %
+0  Model 1     10.4          5025.6           Assembly               77.6
+1  Model 2     10.5          6554.4           Assembly               68.3
+2  Model 3  54756.3         54756.3              Cell1               86.7

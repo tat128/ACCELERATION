@@ -1,0 +1,14 @@
+The following changes were made by the replace_file_content tool to: C:\Users\win-10\.gemini\antigravity\scratch\neurax_app\app.py. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -80,6 +80,8 @@
+ # ─────────────────────────────────────────────────────────────────────────────
+ if 'registry' not in st.session_state:
+     st.session_state.registry = DefectRegistry()
++if 'annotated_images' not in st.session_state:
++    st.session_state.annotated_images = {}  # name -> result dict
+ if 'model_data' not in st.session_state:
+     st.session_state.model_data = {}   # name → DataFrame
+ if 'analyses' not in st.session_state:
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.

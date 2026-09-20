@@ -1,0 +1,54 @@
+
+The command exited with code 0.
+Output:
+Model 2 columns:
+  Demand
+  Entities In Part 1
+  Part 1 VA Time
+  Drilling Queue Time
+  Part 1 Storage Time
+  Part 1 Stored
+  Entities In Part 2
+  Part 2 VA Time
+  Milling Queue Time
+  Part 2 Storage Time
+  Part 2 Stored
+  Entities Out
+  Assembly Time
+  Assembly Queue Time
+  Drilling Utilization
+  Milling Utilization
+  Assembly Utilization
+
+Model 3 columns (first 30):
+  Time_Now
+  Blanking_Util
+  Blanking_SKU1_Queue
+  Blanking_SKU2_Queue
+  Blanking_SKU3_Queue
+  Blanking_SKU4_Queue
+  Press1_Util
+  Press2_Util
+  Press3_Util
+  Press4_Util
+  Press1_Queue
+  Press2_Queue
+  Press3_Queue
+  Press4_Queue
+  Cell1_Util
+  Cell2_Util
+  Cell3_Util
+  Cell4_Util
+  Cell1_Queue
+  Cell2_Queue
+  Cell3_Queue
+  Cell4_Queue
+  Warehouse1_Queue
+  Warehouse_2_Queue
+  Warehouse_3_Queue
+  Warehouse_4_Queue
+  c_Cycle1
+  c_Cycle2
+  c_Cycle3
+  c_Cycle4
+

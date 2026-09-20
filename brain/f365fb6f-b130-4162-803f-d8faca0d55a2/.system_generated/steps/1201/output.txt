@@ -1,0 +1,24 @@
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\app.py","LineNumber":93,"LineContent":"        font-size: 12.5px !important;"}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\app.py","LineNumber":395,"LineContent":"        animation: pulse_glow 2.5s infinite ease-in-out;"}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\app.py","LineNumber":704,"LineContent":"        scrap_cost = st.slider(\"Scrap Unit Cost ($)\", 5.0, 50.0, 15.0, 0.5, format=\"$%.2f\")"}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\app.py","LineNumber":705,"LineContent":"        downtime_cost = st.slider(\"Downtime Cost ($/min)\", 1.0, 10.0, 2.50, 0.25, format=\"$%.2f\")"}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\app.py","LineNumber":706,"LineContent":"        revenue_mult = st.slider(\"Revenue Multiplier\", 1.5, 8.0, 4.0, 0.5, help=\"Selling Price = Scrap Cost x Multiplier\")"}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\app.py","LineNumber":1145,"LineContent":"                baseline = compute_financials(fin_analysis, fin_defect_sum, scrap_cost, downtime_cost, revenue_mult)"}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\app.py","LineNumber":1205,"LineContent":"                        wi_result = what_if(fin_analysis, fin_defect_sum, scrap_cost, downtime_cost, util_impr, scrap_redn, revenue_mult)"}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\app.py","LineNumber":1255,"LineContent":"                    'impact': f\"~${fin_analysis['throughput_gap'] * scrap_cost * revenue_mult:,.0f} revenue recovery\","}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\app.py","LineNumber":1396,"LineContent":"                    max_v = float(xoff * 2.5)"}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\app.py","LineNumber":1481,"LineContent":"                sweep_x = np.linspace(max(1.0, xoff * 0.2), xoff * 2.5, 150)"}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\utils\\chart_helpers.py","LineNumber":68,"LineContent":"        marker=dict(colors=colors, line=dict(color='#0b0f19', width=2.5)),"}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\utils\\chart_helpers.py","LineNumber":132,"LineContent":"        line=dict(color=_CYBER['cyan'], width=2.5),"}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\utils\\chart_helpers.py","LineNumber":395,"LineContent":"        y=85.0, line_dash=\"dash\", line_color=\"#f43f5e\", line_width=2.5,"}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\modules\\production_analyzer.py","LineNumber":193,"LineContent":"        parts_per_hr = round(total_parts / 24.0, 1)"}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\modules\\profitability.py","LineNumber":11,"LineContent":"_DEFAULT_REVENUE_MULTIPLIER = 4.0"}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\modules\\profitability.py","LineNumber":17,"LineContent":"    scrap_cost_per_unit: float = 15.0,"}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\modules\\profitability.py","LineNumber":18,"LineContent":"    downtime_cost_per_min: float = 2.50,"}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\modules\\profitability.py","LineNumber":28,"LineContent":"    scrap_cost_per_unit   Material cost lost per scrapped unit ($)"}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\modules\\profitability.py","LineNumber":30,"LineContent":"    revenue_multiplier    Selling price = scrap_cost × multiplier"}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\modules\\profitability.py","LineNumber":52,"LineContent":"    unit_revenue = scrap_cost_per_unit * revenue_multiplier"}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\modules\\profitability.py","LineNumber":53,"LineContent":"    rework_cost  = scrap_cost_per_unit * 0.4  # 40% of material cost to rework"}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\modules\\profitability.py","LineNumber":56,"LineContent":"    scrap_material_loss = scrap_units * scrap_cost_per_unit"}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\modules\\profitability.py","LineNumber":87,"LineContent":"    scrap_cost_per_unit: float,"}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\modules\\profitability.py","LineNumber":116,"LineContent":"        scrap_cost_per_unit, downtime_cost_per_min,"}

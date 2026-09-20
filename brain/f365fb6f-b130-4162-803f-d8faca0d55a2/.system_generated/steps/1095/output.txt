@@ -1,0 +1,5 @@
+
+The command exited with code 0.
+Output:
+Header: b'MATLAB 5.0 MAT-file, Platform: PCWIN64, Created on: Sun Oct 14 21:06:51 2018                                        \xd7]\xfe\x01\x00\x00\x00\x00\x00\x01IM'
+

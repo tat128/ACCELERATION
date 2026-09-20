@@ -1,0 +1,49 @@
+The following changes were made by the replace_file_content tool to: C:\Users\win-10\.gemini\antigravity\scratch\neurax_app\modules\defect_detector.py. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -108,8 +108,8 @@
+         # Color space anomaly (color deviation in HSV / LAB)
+         hsv = cv2.cvtColor(img_rgb, cv2.COLOR_RGB2HSV)
+         # Rust typically spans brownish/orange/red hues with medium to high saturation
+-        mask1 = cv2.inRange(hsv, np.array([5, 40, 30]), np.array([30, 255, 240]))
+-        mask2 = cv2.inRange(hsv, np.array([160, 40, 30]), np.array([180, 255, 240]))
++        mask1 = cv2.inRange(hsv, np.array([5, 40, 30], dtype=np.uint8), np.array([30, 255, 240], dtype=np.uint8))
++        mask2 = cv2.inRange(hsv, np.array([160, 40, 30], dtype=np.uint8), np.array([180, 255, 240], dtype=np.uint8))
+         color_mask = cv2.bitwise_or(mask1, mask2)
+         
+         # Saliency in LAB
+@@ -116,6 +116,9 @@
+-        l, a, b = cv2.split(lab)
+-        ab_var = cv2.absdiff(a, np.uint8(np.mean(a))) + cv2.absdiff(b, np.uint8(np.mean(b)))
+-        _, ab_thresh = cv2.threshold(ab_var, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
++        _, a, b = cv2.split(lab)
++        a_f = a.astype(np.float32)
++        b_f = b.astype(np.float32)
++        ab_var = np.abs(a_f - float(np.mean(a_f))) + np.abs(b_f - float(np.mean(b_f)))
++        ab_uint = np.uint8(np.clip(ab_var / (ab_var.max() + 1e-5) * 255, 0, 255))
++        _, ab_thresh = cv2.threshold(ab_uint, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+         thresh = cv2.bitwise_or(color_mask, ab_thresh)
+         kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (7, 7))
+         thresh = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel, iterations=2)
+@@ -122,12 +122,11 @@
+     else:
+-        # General Spectral Residual / Contrast Saliency
+-        saliency = cv2.saliency.StaticSaliencySpectralResidual_create()
+-        success, sal_map = saliency.computeSaliency(img_rgb)
+-        if success:
+-            sal_uint = np.uint8(sal_map * 255)
+-            _, thresh = cv2.threshold(sal_uint, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+-        else:
+-            _, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
++        # General Contrast / High-Frequency Saliency
++        blur = cv2.GaussianBlur(gray, (9, 9), 0)
++        diff = np.abs(gray.astype(np.float32) - blur.astype(np.float32))
++        diff_uint = np.uint8(np.clip(diff / (diff.max() + 1e-5) * 255, 0, 255))
++        _, thresh = cv2.threshold(diff_uint, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
++        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
++        thresh = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel, iterations=2)
+ 
+     # 2. Extract and filter bounding boxes
+     contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.

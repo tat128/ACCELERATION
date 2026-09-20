@@ -1,0 +1,33 @@
+The following changes were made by the replace_file_content tool to: C:\Users\win-10\.gemini\antigravity\scratch\neurax_app\app.py. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -16,6 +16,27 @@
+ ROOT = Path(__file__).parent
+ sys.path.insert(0, str(ROOT))
+ 
++# ── Environment Configuration (.env) ─────────────────────────────────────────
++try:
++    from dotenv import load_dotenv
++    load_dotenv(dotenv_path=ROOT / ".env", override=False)
++except ImportError:
++    pass  # python-dotenv not installed; fall back to raw env / hardcoded defaults
++
++# Resolved config constants (env vars take priority; hardcoded strings are fallbacks)
++ENV_MODEL_DIR        = os.getenv("MODEL_DIR",               r"D:\acceleration")
++ENV_MODEL_1_PATH     = os.getenv("MODEL_1_PATH",            r"D:\acceleration\Model_1.csv")
++ENV_MODEL_2_PATH     = os.getenv("MODEL_2_PATH",            r"D:\acceleration\Model_2.csv")
++ENV_MODEL_3_PATH     = os.getenv("MODEL_3_PATH",            r"D:\acceleration\Model_3.csv")
++ENV_YOLO_WEIGHTS     = os.getenv("YOLO_WEIGHTS_PATH",       r"D:\acceleration\best.pt")
++ENV_MATLAB_MAT       = os.getenv("MATLAB_MAT_PATH",         r"C:\Users\win-10\Downloads\3000Samplesv3.mat")
++ENV_SCRAP_COST       = float(os.getenv("DEFAULT_SCRAP_COST",        "15.0"))
++ENV_DOWNTIME_COST    = float(os.getenv("DEFAULT_DOWNTIME_COST",     "2.50"))
++ENV_REVENUE_MULT     = float(os.getenv("DEFAULT_REVENUE_MULTIPLIER","4.0"))
++ENV_CONF_THRESHOLD   = float(os.getenv("CONFIDENCE_THRESHOLD",      "0.45"))
++ENV_NOVEL_THRESHOLD  = float(os.getenv("NOVEL_THRESHOLD",           "0.25"))
++ENV_DEBUG            = os.getenv("DEBUG", "false").lower() == "true"
++
+ from modules.defect_detector  import load_model, run_inference
+ from modules.defect_registry  import DefectRegistry
+ from modules.production_analyzer import load_dataset, load_csv, analyze, compare_models, estimate_wip
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.

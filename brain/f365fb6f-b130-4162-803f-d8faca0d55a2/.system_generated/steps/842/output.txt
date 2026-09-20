@@ -1,0 +1,51 @@
+The following changes were made by the replace_file_content tool to: C:\Users\win-10\.gemini\antigravity\scratch\neurax_app\modules\production_analyzer.py. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -53,12 +53,18 @@
+             
+             # Detect by extension or magic header bytes
+             if fname.endswith('.xlsx') or raw[:4] == b'PK\x03\x04':
+-                df = pd.read_excel(io.BytesIO(raw), engine='openpyxl')
++                if len(raw) > 20 * 1024 * 1024:
++                    df = pd.read_excel(io.BytesIO(raw), engine='openpyxl', nrows=max_sample_rows)
++                else:
++                    df = pd.read_excel(io.BytesIO(raw), engine='openpyxl')
+             elif fname.endswith('.xls') or raw[:8] == b'\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1':
+-                df = pd.read_excel(io.BytesIO(raw), engine='xlrd')
++                if len(raw) > 20 * 1024 * 1024:
++                    df = pd.read_excel(io.BytesIO(raw), engine='xlrd', nrows=max_sample_rows)
++                else:
++                    df = pd.read_excel(io.BytesIO(raw), engine='xlrd')
+             else:
+                 # CSV parsing (if huge, read with limit)
+-                if len(raw) > 25 * 1024 * 1024:
++                if len(raw) > 20 * 1024 * 1024:
+                     df = pd.read_csv(io.BytesIO(raw), nrows=max_sample_rows)
+                 else:
+                     df = pd.read_csv(io.BytesIO(raw))
+@@ -65,13 +65,20 @@
+             # File path string
+             path_str = str(file_or_path)
+             lower_path = path_str.lower()
++            fsize = os.path.getsize(path_str) if os.path.exists(path_str) else 0
++
+             if lower_path.endswith('.xlsx'):
+-                df = pd.read_excel(path_str, engine='openpyxl')
++                if fsize > 20 * 1024 * 1024:
++                    df = pd.read_excel(path_str, engine='openpyxl', nrows=max_sample_rows)
++                else:
++                    df = pd.read_excel(path_str, engine='openpyxl')
+             elif lower_path.endswith('.xls'):
+-                df = pd.read_excel(path_str, engine='xlrd')
++                if fsize > 20 * 1024 * 1024:
++                    df = pd.read_excel(path_str, engine='xlrd', nrows=max_sample_rows)
++                else:
++                    df = pd.read_excel(path_str, engine='xlrd')
+             else:
+                 # If file size is over 20 MB, sample to keep app fast
+-                fsize = os.path.getsize(path_str) if os.path.exists(path_str) else 0
+                 if fsize > 20 * 1024 * 1024:
+                     df = pd.read_csv(path_str, nrows=max_sample_rows)
+                 else:
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.

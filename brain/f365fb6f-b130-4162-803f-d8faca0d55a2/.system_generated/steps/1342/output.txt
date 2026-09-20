@@ -1,0 +1,2 @@
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\app.py","LineNumber":46,"LineContent":"from utils.chart_helpers      import ("}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\README.md","LineNumber":147,"LineContent":"│   ├── chart_helpers.py            # Plotly 3D charts \u0026 HTML5 canvas conveyor simulator"}

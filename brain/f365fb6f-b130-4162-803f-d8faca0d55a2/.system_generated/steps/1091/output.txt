@@ -1,0 +1,8 @@
+
+The command exited with code 1.
+Output:
+Traceback (most recent call last):
+  File "<string>", line 2, in <module>
+    import scipy.io as sio
+ModuleNotFoundError: No module named 'scipy'
+

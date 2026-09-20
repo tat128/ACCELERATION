@@ -1,0 +1,35 @@
+The following changes were made by the replace_file_content tool to: C:\Users\win-10\.gemini\antigravity\scratch\neurax_app\utils\constants.py. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -1,6 +1,14 @@
+ # ─────────────────────────────────────────────────────────────────────────────
+ # Constants & Configuration
+ # ─────────────────────────────────────────────────────────────────────────────
++import os
++from pathlib import Path
++
++try:
++    from dotenv import load_dotenv
++    load_dotenv(dotenv_path=Path(__file__).parent.parent / ".env", override=False)
++except ImportError:
++    pass
+ 
+ # ── YOLOv8 Model ─────────────────────────────────────────────────────────────
+ DEFECT_CLASSES = ['crack', 'hole', 'normal', 'rust', 'scratch']
+@@ -7,9 +7,10 @@
+ 
+-CONFIDENCE_THRESHOLD = 0.45   # below → UNCERTAIN
+-NOVEL_THRESHOLD      = 0.25   # below → NOVEL (flag for human review)
+-
++CONFIDENCE_THRESHOLD = float(os.getenv("CONFIDENCE_THRESHOLD", "0.45"))
++NOVEL_THRESHOLD      = float(os.getenv("NOVEL_THRESHOLD",      "0.25"))
++
++_yolo_env = os.getenv("YOLO_WEIGHTS_PATH", r"D:\acceleration\best.pt")
+ MODEL_PATHS = [
+-    r"D:\acceleration\best.pt",
++    _yolo_env,
+     r"D:\acceleration\runs\classify\defect_classifier\model_v1\weights\best.pt",
+ ]
+ 
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.

@@ -1,0 +1,7 @@
+
+The command exited with code 0.
+Output:
+Model 1 evidence count: 2
+Model 2 evidence count: 0
+Model 3 evidence count: 0
+

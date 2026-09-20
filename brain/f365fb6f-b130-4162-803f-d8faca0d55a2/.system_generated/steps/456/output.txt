@@ -1,0 +1,6 @@
+
+The command exited with code 0.
+Output:
+pandas version: 2.2.3
+openpyxl version: 3.1.5
+

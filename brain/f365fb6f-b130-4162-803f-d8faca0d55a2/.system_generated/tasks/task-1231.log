@@ -1,0 +1,6 @@
+  WARNING: The script dotenv.exe is installed in 'C:\Users\win-10\AppData\Roaming\Python\Python313\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+
+[notice] A new release of pip is available: 26.0.1 -> 26.2.1
+[notice] To update, run: python.exe -m pip install --upgrade pip
+All OK

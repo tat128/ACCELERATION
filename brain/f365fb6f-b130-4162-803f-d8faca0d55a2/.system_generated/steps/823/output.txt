@@ -1,0 +1,14 @@
+The following changes were made by the replace_file_content tool to: C:\Users\win-10\.gemini\antigravity\scratch\neurax_app\app.py. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -1026,7 +1026,7 @@
+             st.markdown("#### Rockwell Arena vs. ANN Surrogate Validation Matrix")
+             st.caption("Benchmarking neural surrogate accuracy (R², RMSE, MAE) against discrete-event simulation datasets.")
+ 
+-            loaded_raw = st.session_state.raw_data
++            loaded_raw = st.session_state.get('model_data', {})
+             if not loaded_raw:
+                 st.info("No Rockwell Arena simulation datasets loaded. Load Model 1, 2, or 3 in the sidebar to benchmark surrogate accuracy.")
+             else:
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.

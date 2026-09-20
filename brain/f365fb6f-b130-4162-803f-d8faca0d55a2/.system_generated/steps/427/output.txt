@@ -1,0 +1,8 @@
+
+The command exited with code 0.
+Output:
+D:\acceleration\dataset\val\rust\rust_00003.png
+  Pre-softmax CAM min: 0.0 max: 0.94112575 mean: 0.31941506
+D:\acceleration\dataset\val\scratch\scratch_00023.png
+  Pre-softmax CAM min: 0.0 max: 0.81352574 mean: 0.20760734
+

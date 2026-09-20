@@ -1,0 +1,46 @@
+The following changes were made by the replace_file_content tool to: C:\Users\win-10\.gemini\antigravity\scratch\neurax_app\app.py. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -1040,7 +1040,17 @@
+             if not evidence:
+                 st.success("No critical process-quality correlations detected under current operating conditions.")
+             else:
+-                for card in evidence:
++                f_p1, f_p2 = st.columns([1, 2])
++                with f_p1:
++                    p_filter = st.selectbox("Filter by Evidence Priority", ["All Signals", "High Confidence Only", "Medium / High"], key="rc_p_filter")
++
++                filtered_evidence = evidence
++                if p_filter == "High Confidence Only":
++                    filtered_evidence = [c for c in evidence if c['confidence'] == 'HIGH']
++                elif p_filter == "Medium / High":
++                    filtered_evidence = [c for c in evidence if c['confidence'] in ('HIGH', 'MEDIUM')]
++
++                for card in filtered_evidence:
+                     conf  = card['confidence']
+                     obs   = card['defect_observed']
+                     cls   = conf
+@@ -1047,11 +1047,16 @@
+ <div class="evidence-box {cls}">
+-  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+-    <b>PROBABLE CAUSE: {card['cause']}</b>
++  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
++    <b style="font-size:13px;">PROBABLE ROOT CAUSE: {card['cause']}</b>
+     <span class="badge badge-{conf}">{conf} CONFIDENCE</span>
+   </div>
+-  <small><b>Telemetry Evidence:</b> {card['evidence']} &nbsp;|&nbsp; <b>Defects:</b> {', '.join(card['related_defects']) if card['related_defects'] else 'General bottleneck'}
+-  {'&nbsp; <span class="badge badge-DEFECT">OBSERVED IN BATCH</span>' if obs else ''}</small><br>
+-  <small style="color:#cbd5e1;"><b>Corrective Action:</b> {card['action']}</small>
++  <div style="margin-bottom:6px; color:#cbd5e1; font-size:12px;">
++    <b>Telemetry Evidence:</b> {card['evidence']}<br>
++    <b>Related Flaws:</b> {', '.join(card['related_defects']) if card['related_defects'] else 'System-wide flow constraint'}
++    {'&nbsp; <span class="badge badge-DEFECT" style="font-size:10px;">OBSERVED IN BATCH</span>' if obs else ''}
++  </div>
++  <div style="background:rgba(15,23,42,0.5); padding:6px 10px; border-radius:6px; border-left:3px solid #38bdf8; font-size:11px; color:#94a3b8;">
++    <b style="color:#38bdf8;">Prescriptive Engineering Action:</b> {card['action']}
++  </div>
+ </div>
+ """
+                     st.markdown(html, unsafe_allow_html=True)
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.

@@ -1,0 +1,15 @@
+
+The command exited with code 0.
+Output:
+Files in D:\acceleration:
+app.py 8859 bytes
+best.pt 2972424 bytes
+dataset.zip 300557840 bytes
+Model_1.csv 254339 bytes
+Model_2.csv 368720 bytes
+Model_3.csv 311108363 bytes
+split_dataset.py 1646 bytes
+train_yolo.py 399 bytes
+WhatsApp Image 2026-09-19 at 20.57.41.jpeg 10239 bytes
+yolov8n-cls.pt 5563076 bytes
+

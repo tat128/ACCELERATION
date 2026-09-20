@@ -1,0 +1,177 @@
+The following changes were made by the replace_file_content tool to: C:\Users\win-10\.gemini\antigravity\scratch\neurax_app\utils\chart_helpers.py. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -261,13 +261,13 @@
+     fig = go.Figure(go.Waterfall(
+         name='', orientation='v',
+         measure=measure, x=labels, y=values,
+-        connector=dict(line=dict(color='rgba(0, 240, 255, 0.4)', width=1.5)),
+-        decreasing=dict(marker=dict(color=_CYBER['red'])),
+-        increasing=dict(marker=dict(color=_CYBER['green'])),
+-        totals=dict(marker=dict(color=_CYBER['cyan'])),
++        connector=dict(line=dict(color='rgba(56, 189, 248, 0.7)', width=2)),
++        decreasing=dict(marker=dict(color='#f43f5e', line=dict(color='#fda4af', width=1.5))),
++        increasing=dict(marker=dict(color='#10b981', line=dict(color='#6ee7b7', width=1.5))),
++        totals=dict(marker=dict(color='#38bdf8', line=dict(color='#bae6fd', width=1.5))),
+         text=[f'${abs(v):,.0f}' for v in values],
+         textposition='outside',
+-        textfont=dict(color='#ffffff', size=11),
++        textfont=dict(color='#f8fafc', size=12, family='JetBrains Mono, monospace'),
+     ))
+     fig.update_layout(
+         **_base_layout(
+@@ -278,28 +278,28 @@
+     return fig
+ 
+ 
+-def margin_comparison_bar(results: dict) -> go.Figure:
+-    if not results:
+-        return go.Figure()
+-
+-    models   = list(results.keys())
+-    baseline = [r['baseline'].get('net_margin', 0) for r in results.values()]
+-    whatif   = [r['whatif'].get('net_margin', 0) for r in results.values()]
++def margin_comparison_bar(baseline_margin: float, whatif_margin: float, model_name: str = "Active Model") -> go.Figure:
++    """Renders a high-contrast side-by-side comparison between Baseline and What-If."""
++    scenarios = ['Baseline Scenario', 'What-If Optimized']
++    margins = [baseline_margin, whatif_margin]
++    colors = ['#6366f1', '#10b981']
+ 
+     fig = go.Figure([
+-        go.Bar(name='Baseline Scenario', x=models, y=baseline,
+-               marker=dict(color=_CYBER['blue'], line=dict(color='rgba(255,255,255,0.15)', width=1)),
+-               text=[f'${v:,.0f}' for v in baseline], textposition='outside', textfont=dict(color='#ffffff')),
+-        go.Bar(name='What-If Optimized',  x=models, y=whatif,
+-               marker=dict(color=_CYBER['cyan'], line=dict(color='rgba(255,255,255,0.15)', width=1)),
+-               text=[f'${v:,.0f}' for v in whatif],   textposition='outside', textfont=dict(color='#ffffff')),
++        go.Bar(
++            x=scenarios,
++            y=margins,
++            marker=dict(color=colors, line=dict(color=['#a5b4fc', '#6ee7b7'], width=1.5)),
++            text=[f'${v:,.0f}' for v in margins],
++            textposition='outside',
++            textfont=dict(color='#f8fafc', size=13, family='JetBrains Mono, monospace'),
++            width=[0.45, 0.45],
++        )
+     ])
+     fig.update_layout(
+         **_base_layout(
+-            barmode='group',
+-            title=dict(text='Net Margin Delta — Baseline vs What-If Optimization', font=dict(size=14, color='#f8fafc')),
+-            yaxis=dict(title='Net Operating Margin ($)'),
+-            height=320,
++            title=dict(text=f'Margin Delta: Baseline vs What-If ({model_name})', font=dict(size=13, color='#f8fafc')),
++            yaxis=dict(title='Operating Margin ($)'),
++            height=260,
+         )
+     )
+     return fig
+@@ -307,10 +307,10 @@
+ # ── ANN Surrogate & Digital Twin Charts ───────────────────────────────────────
+ 
+ def ann_prediction_gauge(val: float, title: str, threshold: float = 0.85) -> go.Figure:
+-    """Renders a high-tech cyberpunk gauge for ANN predicted station load."""
++    """Renders a high-contrast gauge for ANN predicted station load with visible threshold."""
+     pct = val * 100.0 if val <= 1.0 else val
+     thresh_pct = threshold * 100.0 if threshold <= 1.0 else threshold
+-    bar_color = _CYBER['red'] if pct >= thresh_pct else (_CYBER['orange'] if pct >= thresh_pct * 0.85 else _CYBER['cyan'])
++    bar_color = '#f43f5e' if pct >= thresh_pct else ('#f59e0b' if pct >= thresh_pct * 0.85 else '#38bdf8')
+ 
+     fig = go.Figure(go.Indicator(
+         mode="gauge+number+delta",
+@@ -317,20 +317,20 @@
+-        number=dict(suffix="%", font=dict(color='#f8fafc', size=24)),
+-        delta=dict(reference=thresh_pct, increasing=dict(color=_CYBER['red']), decreasing=dict(color=_CYBER['green'])),
+-        title=dict(text=title, font=dict(color='#cbd5e1', size=13)),
++        number=dict(suffix="%", font=dict(color='#f8fafc', size=26, family='JetBrains Mono, monospace')),
++        delta=dict(reference=thresh_pct, increasing=dict(color='#f43f5e'), decreasing=dict(color='#10b981')),
++        title=dict(text=f"<b>{title}</b>", font=dict(color='#f8fafc', size=13, family='Plus Jakarta Sans, sans-serif')),
+         gauge=dict(
+-            axis=dict(range=[0, 100], tickwidth=1, tickcolor="#64748b", tickfont=dict(color="#94a3b8", size=10)),
+-            bar=dict(color=bar_color, thickness=0.35),
+-            bgcolor="rgba(15, 23, 42, 0.6)",
+-            borderwidth=1,
+-            bordercolor="rgba(0, 240, 255, 0.2)",
++            axis=dict(range=[0, 100], tickwidth=1.5, tickcolor="#94a3b8", tickfont=dict(color="#cbd5e1", size=10)),
++            bar=dict(color=bar_color, thickness=0.45),
++            bgcolor="rgba(30, 41, 59, 0.7)",
++            borderwidth=1.5,
++            bordercolor="rgba(148, 163, 184, 0.3)",
+             steps=[
+-                dict(range=[0, thresh_pct * 0.75], color="rgba(5, 223, 157, 0.15)"),
+-                dict(range=[thresh_pct * 0.75, thresh_pct], color="rgba(255, 170, 0, 0.15)"),
+-                dict(range=[thresh_pct, 100], color="rgba(255, 51, 102, 0.25)"),
++                dict(range=[0, thresh_pct * 0.75], color="rgba(16, 185, 129, 0.25)"),
++                dict(range=[thresh_pct * 0.75, thresh_pct], color="rgba(245, 158, 11, 0.25)"),
++                dict(range=[thresh_pct, 100], color="rgba(244, 63, 94, 0.35)"),
+             ],
+             threshold=dict(
+-                line=dict(color=_CYBER['red'], width=3),
+-                thickness=0.8,
++                line=dict(color='#f43f5e', width=4),
++                thickness=0.85,
+                 value=thresh_pct
+             )
+         )
+@@ -337,9 +337,9 @@
+     fig.update_layout(
+         paper_bgcolor=_BG,
+         plot_bgcolor=_BG,
+-        font=dict(color='#e2e8f0', family='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace'),
+-        margin=dict(t=30, b=10, l=20, r=20),
+-        height=190
++        font=dict(color='#e2e8f0', family='Plus Jakarta Sans, sans-serif'),
++        margin=dict(t=35, b=10, l=20, r=20),
++        height=200
+     )
+     return fig
+ 
+@@ -346,7 +346,7 @@
+ def ann_sweep_curve(sweep_x: list, sweep_y: list, output_names: list, current_input: float = None, title: str = "Neural Metamodel Response Curve") -> go.Figure:
+-    """Plots multi-output surrogate response curves across parameter sweep."""
+-    fig = go.Figure()
+-    colors = [_CYBER['cyan'], _CYBER['green'], _CYBER['purple'], _CYBER['orange'], _CYBER['yellow']]
++    """Plots multi-output surrogate response curves across parameter sweep with bold threshold."""
++    fig = go.Figure()
++    colors = ['#38bdf8', '#10b981', '#a855f7', '#f59e0b', '#eab308']
+ 
+     import numpy as np
+     y_arr = np.array(sweep_y)
+@@ -360,14 +360,18 @@
+             y=series_y,
+             mode='lines',
+             name=name,
+-            line=dict(color=col_color, width=2.5),
++            line=dict(color=col_color, width=3),
+             hovertemplate=f"Input: %{{x:.1f}}<br>{name}: %{{y:.2f}}%<extra></extra>"
+         ))
+ 
+-    # Threshold line
++    # Bold High-Contrast Threshold line
+     fig.add_hline(
+-        y=85.0, line_dash="dash", line_color=_CYBER['red'],
+-        annotation_text="85% Bottleneck Limit", annotation_font=dict(color=_CYBER['red'], size=11),
++        y=85.0, line_dash="dash", line_color="#f43f5e", line_width=2.5,
++        annotation_text="85% Bottleneck Limit",
++        annotation_font=dict(color="#f43f5e", size=12, family='JetBrains Mono, monospace'),
++        annotation_bgcolor="rgba(15, 23, 42, 0.85)",
++        annotation_bordercolor="#f43f5e",
++        annotation_borderwidth=1,
+         annotation_position="top right"
+     )
+ 
+@@ -374,6 +374,10 @@
+         fig.add_vline(
+-            x=current_input, line_dash="dot", line_color="#ffffff",
+-            annotation_text=f"Current: {current_input:.1f}", annotation_font=dict(color="#ffffff", size=10),
++            x=current_input, line_dash="dot", line_color="#ffffff", line_width=2,
++            annotation_text=f"Current Input: {current_input:.1f}",
++            annotation_font=dict(color="#38bdf8", size=11, family='JetBrains Mono, monospace'),
++            annotation_bgcolor="rgba(15, 23, 42, 0.85)",
++            annotation_bordercolor="#38bdf8",
++            annotation_borderwidth=1,
+             annotation_position="bottom right"
+         )
+ 
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.

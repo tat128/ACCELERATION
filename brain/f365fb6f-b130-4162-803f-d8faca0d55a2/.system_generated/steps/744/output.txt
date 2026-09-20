@@ -1,0 +1,34 @@
+
+The command exited with code 0.
+Output:
+
+Name                   Length
+----                   ------
+c1s2ANN.m                3773
+c1s2Script.m             1261
+c1s4ANN.m                3749
+c1s4Script.m             1261
+c2s2ANN.m                3770
+c2s2Script.m             1261
+c2s4ANN.m                3756
+c2s4Script.m             1261
+c3s2ANN.m                3747
+c3s2Script.m             1261
+c3s3ANN.m                3769
+c3s3Script.m             1261
+c4s3ANN.m                3782
+c4s3Script.m             1261
+c4s4ANN.m                3745
+c4s4Script.m             1261
+Model1ANN.m              3551
+Model1Script.m           1277
+Model2ANN.m              3560
+Model2ANNAssembly.m      2972
+Model2ANNDrilling.m      3233
+Model2ANNMilling.m       3226
+Model2ScriptAssembly.m   1307
+Model2ScriptDrilling.m   1307
+Model2ScriptMilling.m    1303
+
+
+

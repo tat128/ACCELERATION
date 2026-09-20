@@ -1,0 +1,8 @@
+
+The command exited with code 1.
+Output:
+  File "<string>", line 12
+    print(f'  {k}: type={type(v)}, shape={getattr(v, " shape\,
+                                                     ^
+SyntaxError: unterminated string literal (detected at line 12)
+

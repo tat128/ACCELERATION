@@ -1,0 +1,23 @@
+
+The command exited with code 0.
+Output:
+=== Model 1: 5 evidence cards ===
+  [MEDIUM] Parts waiting long at drilling  -  thermal cycling causes micro-cracks
+      Evidence: Drilling Waiting Time > 15 min
+  [MEDIUM] Extreme assembly queue  -  surface degradation and contamination during idle
+      Evidence: Assembly Waiting Time > 50 min
+  [MEDIUM] Assembly handling abrasion and component fitment friction (Moderate Line Constraint)
+      Evidence: Primary Constraint: Assembly Utilisation @ 77.6% with queue delay 97.1 min
+=== Model 2: 2 evidence cards ===
+  [MEDIUM] Assembly handling abrasion and component fitment friction (Moderate Line Constraint)
+      Evidence: Primary Constraint: Assembly Utilisation @ 68.3% with queue delay 1.4 min
+  [LOW] Drilling station tool vibration and thermal cutting friction (Active Station Workload)
+      Evidence: Drilling Utilisation @ 52.1% (Nominal operating envelope)
+=== Model 3: 13 evidence cards ===
+  [HIGH] Cell1 pacing stress and multi-axis fixture misalignment (Critical TOC Bottleneck)
+      Evidence: Primary Constraint: Cell1 Utilisation @ 86.7% (Critical >80%)
+  [HIGH] Blanking dynamic mechanical stamping impact and die fatigue (High Load Overload)
+      Evidence: Blanking Utilisation @ 85.3% (Overload >80%)
+  [HIGH] Cell4 pacing stress and multi-axis fixture misalignment (High Load Overload)
+      Evidence: Cell4 Utilisation @ 81.4% (Overload >80%)
+

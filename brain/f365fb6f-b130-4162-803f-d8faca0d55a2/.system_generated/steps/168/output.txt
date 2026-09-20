@@ -1,0 +1,6 @@
+
+The command exited with code 0.
+Output:
+Checking D:\acceleration\best.pt: exists = True
+Checking D:\acceleration\runs\classify\defect_classifier\model_v1\weights\best.pt: exists = False
+

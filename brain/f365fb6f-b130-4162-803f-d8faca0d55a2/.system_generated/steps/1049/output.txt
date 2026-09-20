@@ -1,0 +1,10 @@
+Task: f365fb6f-b130-4162-803f-d8faca0d55a2/task-1047
+Status: DONE
+Log: C:\Users\win-10\.gemini\antigravity\brain\f365fb6f-b130-4162-803f-d8faca0d55a2\.system_generated\tasks\task-1047.log
+Log output:
+Drilling : {'utilization': 0.521, 'waiting_time': 2.46}
+Milling : {'utilization': 0.3919, 'waiting_time': 0.34}
+Assembly : {'utilization': 0.6835, 'waiting_time': 1.4}
+Demand: 10.5 Parts: 6554.4
+
+Last progress: 1s ago

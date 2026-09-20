@@ -1,0 +1,8 @@
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\modules\\defect_detector.py","LineNumber":60,"LineContent":"        \"\\n\\nPlace best.pt at D:\\\\acceleration\\\\best.pt or upload below.\""}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\app.py","LineNumber":597,"LineContent":"            r'D:\\acceleration\\Model_1.csv', r'D:\\acceleration\\Model 1.csv',"}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\app.py","LineNumber":601,"LineContent":"            r'D:\\acceleration\\Model_2.csv', r'D:\\acceleration\\Model 2.csv',"}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\app.py","LineNumber":605,"LineContent":"            r'D:\\acceleration\\Model_3.csv', r'D:\\acceleration\\Model 3.csv',"}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\app.py","LineNumber":632,"LineContent":"            value=r\"D:\\acceleration\\best.pt\","}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\app.py","LineNumber":681,"LineContent":"                    default_suggest = f\"D:\\\\acceleration\\\\{model_key.replace(' ', '_')}.xlsx\""}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\utils\\constants.py","LineNumber":13,"LineContent":"    r\"D:\\acceleration\\best.pt\","}
+{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\utils\\constants.py","LineNumber":14,"LineContent":"    r\"D:\\acceleration\\runs\\classify\\defect_classifier\\model_v1\\weights\\best.pt\","}

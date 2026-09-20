@@ -1,0 +1,14 @@
+The following changes were made by the replace_file_content tool to: C:\Users\win-10\.gemini\antigravity\scratch\neurax_app\app.py. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -1225,7 +1225,7 @@
+ 
+                         # Interactive Dynamic Margin Delta Bar Chart
+                         st.plotly_chart(
+-                            margin_comparison_bar(baseline['net_margin'], wi_result['net_margin'], fin_model),
++                            margin_comparison_bar({fin_model: {'baseline': baseline, 'whatif': wi_result}}),
+                             use_container_width=True,
+                             key=f"wi_bar_{fin_model}"
+                         )
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.

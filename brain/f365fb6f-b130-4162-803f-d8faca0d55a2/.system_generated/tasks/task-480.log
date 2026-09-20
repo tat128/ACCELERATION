@@ -1,0 +1,3 @@
+Model_1.csv shape columns: 22 sample cols: ['Demand', 'Total parts', 'Parts per hour', 'VA Time', 'Drilling Waiting Time', 'Milling Waiting Time', 'Assembly Waiting Time', 'Drilling Util']
+Model_2.csv shape columns: 17 sample cols: ['Demand', 'Entities In Part 1', 'Part 1 VA Time', 'Drilling Queue Time', 'Part 1 Storage Time', 'Part 1 Stored', 'Entities In Part 2', 'Part 2 VA Time']
+Model_3.csv shape columns: 78 sample cols: ['Time_Now', 'Blanking_Util', 'Blanking_SKU1_Queue', 'Blanking_SKU2_Queue', 'Blanking_SKU3_Queue', 'Blanking_SKU4_Queue', 'Press1_Util', 'Press2_Util']
