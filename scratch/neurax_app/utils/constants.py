@@ -4,6 +4,16 @@
 import os
 from pathlib import Path
 
+# 1. Define BASE_DIR first
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# 2. Then reference BASE_DIR inside MODEL_PATHS
+MODEL_PATHS = [
+    str(BASE_DIR / "best.pt"),
+    str(BASE_DIR / "scratch" / "neurax_app" / "best.pt"),
+    "best.pt",
+]
+
 try:
     from dotenv import load_dotenv
     load_dotenv(dotenv_path=Path(__file__).parent.parent / ".env", override=False)
