@@ -15,6 +15,19 @@ from typing import Optional
 import numpy as np
 import pandas as pd
 
+STATION_COLS = {
+    "Inspection Station": {
+        "passed": "units_passed",
+        "defective": "defect_count" 
+    }
+}
+
+def analyze(df):
+
+    for station, col_groups in STATION_COLS.items():
+        pass_col = col_groups.get("passed")
+        fail_col = col_groups.get("defective")
+
 def analyze_factory_telemetry(file_path):
     df = pd.read_excel(file_path) # or pd.read_csv
     
