@@ -1242,9 +1242,6 @@ with tab4:
             'title': 'High Throughput Gap',
             'desc': 'Review process parameters to minimize operational bottlenecks.'
         })
-        else :
-            pass
-            
                 recs.insert(0, {
                     'priority': 'HIGH',
                     'title':    f"Elevate {fin_analysis['bottleneck_station']} station capacity",
