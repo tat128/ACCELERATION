@@ -18,7 +18,9 @@ import pandas as pd
 STATION_COLS = {
     "Inspection Station": {
         "passed": "units_passed",
-        "defective": "defect_count" 
+        "defective": "defect_count",
+        "inspected": "units_inspected",
+        "util": None  # Optional key so col_groups['util'] doesn't throw KeyError
     }
 }
 
