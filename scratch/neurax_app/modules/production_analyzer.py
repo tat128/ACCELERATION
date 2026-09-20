@@ -15,7 +15,28 @@ from typing import Optional
 import numpy as np
 import pandas as pd
 
-from utils.constants import STATION_COLS, DEMAND_COLS, PARTS_COLS, PPH_COLS
+def analyze_factory_telemetry(file_path):
+    df = pd.read_excel(file_path) # or pd.read_csv
+    
+    # Calculate key operational metrics automatically
+    total_inspected = df['units_inspected'].sum()
+    total_passed = df['units_passed'].sum()
+    total_defects = df['defect_count'].sum()
+    
+    # Calculate Yield & Defect Rates
+    overall_yield = (total_passed / total_inspected) * 100 if total_inspected > 0 else 0
+    defect_rate = (total_defects / total_inspected) * 100 if total_inspected > 0 else 0
+    
+    # Breakdown by Line & Defect Type
+    defects_by_line = df.groupby('line_id')['defect_count'].sum()
+    defect_distribution = df.groupby('defect_type')['defect_count'].sum()
+    
+    return {
+        'yield': overall_yield,
+        'defect_rate': defect_rate,
+        'by_line': defects_by_line,
+        'by_type': defect_distribution
+    }
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
