@@ -1235,7 +1235,7 @@ with tab4:
                 })
 
             if fin_analysis and isinstance(fin_analysis, dict):
-    if fin_analysis.get('throughput_gap', 0) > 10:
+                if fin_analysis.get('throughput_gap', 0) > 10:
         
                 recs.insert(0, {
                     'priority': 'HIGH',
