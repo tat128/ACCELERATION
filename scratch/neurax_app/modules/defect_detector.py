@@ -39,10 +39,24 @@ def load_model(custom_path: Optional[str] = None) -> tuple[object | None, str | 
             "Run: pip install ultralytics"
         )
 
-    search_paths = ([custom_path] if custom_path else []) + MODEL_PATHS
+    # Calculate absolute base directory of the current file
+    script_dir = Path(__file__).resolve().parent
+    project_root = script_dir.parent
+    repo_root = project_root.parent
+
+    # Dynamically search relative paths alongside predefined MODEL_PATHS
+    relative_search_paths = [
+        custom_path,
+        str(script_dir / "best.pt"),
+        str(project_root / "best.pt"),
+        str(repo_root / "best.pt"),
+        "best.pt",
+    ] + MODEL_PATHS
+
+    # Filter out empty paths and duplicate entries
+    search_paths = list(dict.fromkeys([p for p in relative_search_paths if p]))
+
     for path in search_paths:
-        if not path:
-            continue
         if path in _model_cache:
             return _model_cache[path], None
         if os.path.exists(path):
@@ -53,13 +67,11 @@ def load_model(custom_path: Optional[str] = None) -> tuple[object | None, str | 
             except Exception as exc:
                 return None, f"Failed to load {path}: {exc}"
 
-    checked = [p for p in search_paths if p]
     return None, (
         f"Model weights not found.\n"
-        f"Checked:\n" + "\n".join(f"  • {p}" for p in checked) +
-        "\n\nPlace best.pt at D:\\acceleration\\best.pt or upload below."
+        f"Checked paths:\n" + "\n".join(f"  • {p}" for p in search_paths) +
+        "\n\nPlease ensure best.pt is present in your repository root or application directory."
     )
-
 
 # ── PyTorch Grad-CAM Neural Activation ─────────────────────────────────────────
 
