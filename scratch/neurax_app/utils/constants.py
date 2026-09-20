@@ -19,8 +19,12 @@ NOVEL_THRESHOLD      = float(os.getenv("NOVEL_THRESHOLD",      "0.25"))
 
 _yolo_env = os.getenv("YOLO_WEIGHTS_PATH", r"D:\acceleration\best.pt")
 MODEL_PATHS = [
-    _yolo_env,
-    r"D:\acceleration\runs\classify\defect_classifier\model_v1\weights\best.pt",
+    # 1. Look in root directory
+    str(BASE_DIR / "best.pt"),
+    # 2. Look inside scratch/neurax_app
+    str(BASE_DIR / "scratch" / "neurax_app" / "best.pt"),
+    # 3. Fallback relative path
+    "best.pt",
 ]
 
 # ── Visual Colours ────────────────────────────────────────────────────────────
