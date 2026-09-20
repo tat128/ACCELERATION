@@ -1,5 +1,0 @@
-
-The command exited with code 0.
-Output:
-ALL 9 PLOTLY CHARTS CREATED SUCCESSFULLY WITH ZERO ERRORS!
-

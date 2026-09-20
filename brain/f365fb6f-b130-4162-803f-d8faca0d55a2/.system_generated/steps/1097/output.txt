@@ -1,5 +1,0 @@
-
-The command exited with code 0.
-Output:
-Error: Error -3 while decompressing data: incorrect header check
-

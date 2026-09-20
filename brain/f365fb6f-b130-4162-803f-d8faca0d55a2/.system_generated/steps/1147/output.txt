@@ -1,5 +1,0 @@
-{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\app.py","LineNumber":28,"LineContent":"    financial_waterfall, margin_comparison_bar,"}
-{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\app.py","LineNumber":1228,"LineContent":"                            margin_comparison_bar(baseline['net_margin'], wi_result['net_margin'], fin_model),"}
-{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\utils\\chart_helpers.py","LineNumber":282,"LineContent":"def margin_comparison_bar(arg1, arg2=None, model_name: str = \"Active Model\") -\u003e go.Figure:"}
-{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\utils\\chart_helpers.py","LineNumber":286,"LineContent":"      margin_comparison_bar(baseline_margin, whatif_margin, model_name)"}
-{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\utils\\chart_helpers.py","LineNumber":287,"LineContent":"      margin_comparison_bar({'Model 1': {'baseline': ..., 'whatif': ...}})"}

@@ -1,8 +1,0 @@
-{"name":"README.md", "sizeBytes":"9796"}
-{"name":"app.py", "sizeBytes":"35846"}
-{"name":"data", "isDir":true}
-{"name":"modules", "isDir":true}
-{"name":"requirements.txt", "sizeBytes":"299"}
-{"name":"utils", "isDir":true}
-
-Summary: This directory contains 3 subdirectories and 3 files.

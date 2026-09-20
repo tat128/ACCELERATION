@@ -1,5 +1,0 @@
-
-The command exited with code 0.
-Output:
-Current app.py length: 68515
-

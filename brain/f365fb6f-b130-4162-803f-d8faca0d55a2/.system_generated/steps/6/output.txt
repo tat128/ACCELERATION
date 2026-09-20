@@ -1,4 +1,0 @@
-A1: Streamlit (Python) — quick to build, data-science friendly
-A2: Something else — I'll describe in the write-in box
-A3: No, I'll use only the local YOLOv8 model + rule-based logic
-A4: Surface defects (scratches, cracks, corrosion, dents)

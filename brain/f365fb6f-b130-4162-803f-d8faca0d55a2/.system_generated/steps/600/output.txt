@@ -1,7 +1,0 @@
-
-The command exited with code 0.
-Output:
-XLSX loaded rows: 50 error: None
-XLSX analyzed bottleneck: Assembly 0.6282
-Test passed and cleaned up!
-

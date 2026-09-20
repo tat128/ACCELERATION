@@ -1,6 +1,0 @@
-Traceback (most recent call last):
-  File "<string>", line 11, in <module>
-    print('Model 2 bottleneck:', a2.get('bottleneck_station'), 'util:', a2.get('bottleneck_util'), 'demand:', a2.get('demand'), 'parts:', a2.get('total_parts'), 'stations:', list(a2.get('stations', {}).keys()))
-                                 ^^^^^^
-AttributeError: 'NoneType' object has no attribute 'get'
-Model 1 bottleneck: Assembly util: 0.7759 demand: 10.4 parts: 5025.6

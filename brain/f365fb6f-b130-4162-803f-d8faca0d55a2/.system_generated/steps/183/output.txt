@@ -1,6 +1,0 @@
-
-The command exited with code 0.
-Output:
-Model layers: 99
-Probs: [   0.092033     0.13138     0.74693    0.011026     0.01863]
-

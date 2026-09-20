@@ -1,9 +1,0 @@
-{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\requirements.txt","LineNumber":1,"LineContent":"# NEURAX 3.0 — Dependencies"}
-{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\README.md","LineNumber":1,"LineContent":"# NEURAX 3.0 — Visual Inspection \u0026 Defect Root-Cause Assistant"}
-{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\README.md","LineNumber":3,"LineContent":"\u003e **NEURAX HACKATHON 3.0 · Domain 2 — AI in Industry \u0026 Automation**"}
-{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\README.md","LineNumber":17,"LineContent":"NEURAX 3.0 is a **unified industrial decision-support system** that solves all three simultaneously — without requiring live hardware, PLC connections or robotic integration."}
-{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\README.md","LineNumber":25,"LineContent":"│                       NEURAX 3.0 System                         │"}
-{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\README.md","LineNumber":140,"LineContent":"neurax_app/"}
-{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\README.md","LineNumber":185,"LineContent":"*NEURAX 3.0 — All analyses are advisory/simulated. No live hardware access required or used.*"}
-{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\utils\\constants.py","LineNumber":2,"LineContent":"# NEURAX 3.0  –  Constants \u0026 Configuration"}
-{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\utils\\chart_helpers.py","LineNumber":1,"LineContent":"\"\"\"Plotly chart factory for NEURAX 3.0 dashboard.\"\"\""}

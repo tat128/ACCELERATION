@@ -1,8 +1,0 @@
-
-The command exited with code 0.
-Output:
-Loaded models: ['c1s2ANN', 'c1s4ANN', 'c2s2ANN', 'c2s4ANN', 'c3s2ANN', 'c3s3ANN', 'c4s3ANN', 'c4s4ANN', 'Model1ANN', 'Model2ANN', 'Model2ANNAssembly', 'Model2ANNDrilling', 'Model2ANNMilling']
-Model1ANN pred: [0.06937737 0.0519137  0.10354344]
-Model2ANN pred: [0.04977757 0.03723175 0.0728979 ]
-Opt status: OPTIMAL Opt input: [1293.0]
-

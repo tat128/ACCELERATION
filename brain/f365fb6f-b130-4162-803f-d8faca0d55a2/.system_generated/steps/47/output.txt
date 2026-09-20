@@ -1,8 +1,0 @@
-{"name":"__init__.py", "sizeBytes":"18"}
-{"name":"defect_detector.py", "sizeBytes":"8405"}
-{"name":"defect_registry.py", "sizeBytes":"3214"}
-{"name":"production_analyzer.py", "sizeBytes":"6808"}
-{"name":"profitability.py", "sizeBytes":"5672"}
-{"name":"root_cause.py", "sizeBytes":"4513"}
-
-Summary: This directory contains 0 subdirectories and 6 files.

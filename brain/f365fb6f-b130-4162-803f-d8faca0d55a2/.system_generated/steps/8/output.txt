@@ -1,3 +1,0 @@
-A1: the excel includes Demand	 Total parts	Parts per hour	VA Time	Drilling Waiting Time	Milling Waiting Time	Assembly Waiting Time	Drilling Util	Milling Util	Assembly Util	
-and their data
-A2: Yes — I have model weights (.pt file) already exported/saved

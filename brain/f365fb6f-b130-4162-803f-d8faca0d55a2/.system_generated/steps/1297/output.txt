@@ -1,7 +1,0 @@
-{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\README.md","LineNumber":7,"LineContent":"## 🎯 Problem Understanding"}
-{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\README.md","LineNumber":21,"LineContent":"## 🏗️ Architecture"}
-{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\README.md","LineNumber":70,"LineContent":"## 🔬 Approach"}
-{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\README.md","LineNumber":112,"LineContent":"## 🚀 Quick Start"}
-{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\README.md","LineNumber":137,"LineContent":"## 📁 Project Structure"}
-{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\README.md","LineNumber":157,"LineContent":"## 🏆 Judging Criteria Coverage"}
-{"File":"C:\\Users\\win-10\\.gemini\\antigravity\\scratch\\neurax_app\\README.md","LineNumber":172,"LineContent":"## 🛠️ Tech Stack"}

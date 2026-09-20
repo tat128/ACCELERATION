@@ -1,3 +1,0 @@
-Model task: classify
-Model names: {0: 'crack', 1: 'hole', 2: 'normal', 3: 'rust', 4: 'scratch'}
-Model type: ClassificationModel
